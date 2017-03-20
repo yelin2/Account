@@ -1,18 +1,23 @@
 import java.util.Scanner;
 
 public class Account {
-	private float total;
+	private float balance;
 	
 	public void credit(float add){
-		total+=add;
+		balance+=add;
 			}
 	
 	public void debit(float with){
-		total-=with;
+		balance-=with;
 		}
 		
 	
 	public float balance(){
-		return total;
+		return balance;
+	}
+	
+	protected float setBalance(float b){
+		balance=b;
+		return balance;
 	}
 }
