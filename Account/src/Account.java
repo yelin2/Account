@@ -9,6 +9,10 @@ public class Account {
 	
 	public void debit(float with){
 		balance-=with;
+		if(balance<0){
+			balance+=with;
+			System.out.print("Debit amount exceeded account balance.\n");
+		}
 		}
 		
 	
@@ -16,8 +20,7 @@ public class Account {
 		return balance;
 	}
 	
-	protected float setBalance(float b){
+	protected void setBalance(float b){
 		balance=b;
-		return balance;
 	}
 }
