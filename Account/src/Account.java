@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 public class Account {
-	private float balance;
+	private double balance;
 	
-	public void credit(float add){
+	public void credit(double add){
 		balance+=add;
 			}
 	
-	public void debit(float with){
+	public void debit(double with){
 		balance-=with;
 		if(balance<0){
 			balance+=with;
@@ -16,11 +16,15 @@ public class Account {
 		}
 		
 	
-	public float balance(){
+	public double balance(){
 		return balance;
 	}
 	
-	protected void setBalance(float b){
+	protected void setBalance(double b){
 		balance=b;
+		
+	}
+	public double getBalance(){
+		return balance;
 	}
 }

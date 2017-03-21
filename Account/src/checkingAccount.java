@@ -1,23 +1,34 @@
 
 public class checkingAccount extends Account {
-	private float credit_limit;
-	private float interest;
-	private float loan_interest;
+	private double credit_limit;
+	private double interest;
+	private double loan_interest;
 	
 	
-	public void setInterest(float i){
+	public void setInterest(double i){
 		interest=i;
 	}
-	public void setLoanInterest(float li){
+	public void setLoanInterest(double li){
 		loan_interest=li;
 	}
-	public void setCreditLimit(float cl){
+	public void setCreditLimit(double cl){
 		credit_limit=cl;
 	}
 	
 	@Override
-	public void debit(float with){
-		
+	public void debit(double with){
+		if(getBalance()-with<-credit_limit){
+			System.out.print("exceed limit\n");
+		}else if(getBalance()-with>=-credit_limit){
+			setBalance(getBalance()-with);
+		}
 	}
 
+	public void nextMonth(){
+		if(getBalance()>0) {
+			setBalance(getBalance()*(1+interest));
+		}else if(getBalance()<0) {
+			setBalance(getBalance()*(1+loan_interest));
+		}
+	}
 }
