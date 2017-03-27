@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
-public class Account {
+abstract class Account {
 	private double balance;
 	
+	public Account(double initialBalance) {
+		balance=initialBalance;
+	}
+
+
 	public void credit(double add){
 		balance+=add;
 			}
@@ -16,10 +21,6 @@ public class Account {
 		}
 		
 	
-	public double balance(){
-		return balance;
-	}
-	
 	protected void setBalance(double b){
 		balance=b;
 		
@@ -27,4 +28,9 @@ public class Account {
 	public double getBalance(){
 		return balance;
 	}
+	
+	abstract double getWithdrawableAccount();
+	
+	abstract void passTime(int hours);
+	
 }
