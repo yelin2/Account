@@ -9,25 +9,34 @@ public class checkingAccount extends Account {
 		super(balance);
 		credit_limit=limit;
 		this.interest=interest;
-		this.loan_interest=loanInterest;
+		loan_interest=loanInterest;
 	}
 	
 	public double getWithdrawableAccount(){
-		setBalance(getBalance()+credit_limit);
-		return getBalance();
+		if (getBalance()-credit_limit>0) {
+			return getBalance()+credit_limit;
+		} else {
+			return  0.0;
+		}
+		
 	}
 	
-	public void passTime(int hours){
+	public void passTime(int month){
 		if(getBalance()>0){
-			setBalance(getBalance()*(1+interest*hours));
+			setBalance(getBalance()*(1+interest*month));
 		} else if(getBalance()<0){
-			setBalance(getBalance()*(1-getBalance()*loan_interest*hours));
+			setBalance(getBalance()*(1+loan_interest*month));
 		}
 	}
 	
 	public boolean isBankrupted(){
-		return true;
+		if(getBalance()<-credit_limit){
+			return false;
+		} else {
+			return true;
+		}
 	}
+	
 	@Override
 	public void debit(double with){
 		if(getBalance()-with<-credit_limit){
