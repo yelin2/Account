@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 
 public class SavingsAccount extends Account {
 
@@ -24,16 +25,47 @@ public class SavingsAccount extends Account {
 		}
 	}
 	
+	public void passTime(){
+		if(month==12){
+			setBalance(getBalance()*Math.pow((1+interest), month));
+		}
+	}
 	
-	public void debit(double with){
+	
+	public void debit(double with) throws Exception{
+		if(with<0){
+			throw new Exception();
+		}
 		if(month<12){
-			System.out.print("아직은 출금할 수 없습니다 \n");
+			throw new Exception("음수입력");
+			//System.out.print("아직은 출금할 수 없습니다 \n");
 		}else {
 			if(getBalance()-with>0){
 				setBalance(getBalance()-with);
 			}else {
-				System.out.print("한도를 초과했습니다\n");
+				throw new Exception("Debit amount exceeded account balance");
 			}
 		}
+	}
+	public double getinterest(){
+		return interest;
+	
+	}
+	public double EstimateValue(int month){
+		if(this.month==1){
+			setBalance(getBalance()/(1+interest));
+		}
+		setBalance(getBalance()*Math.pow((1+interest), month));
+		return getBalance();
+	}
+	
+	public double EstimateValue(){
+		month=1;
+		setBalance(getBalance()*(1+interest));
+		return getBalance();
+	}
+	
+	public String toString(){
+		return String.format("SavingAccount_price"+getBalance());
 	}
 }

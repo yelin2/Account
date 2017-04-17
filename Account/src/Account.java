@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-abstract class Account {
+abstract class Account implements Valuable{
 	private double balance;
 	
 	public Account(double initialBalance) {
@@ -12,12 +12,12 @@ abstract class Account {
 		balance+=add;
 			}
 	
-	public void debit(double with){
+	public void debit(double with) throws Exception{
 		balance-=with;
-		if(balance<0){
+		/*if(balance<0){
 			balance+=with;
 			System.out.print("Debit amount exceeded account balance.\n");
-		}
+		}*/
 		}
 		
 	
@@ -32,5 +32,7 @@ abstract class Account {
 	abstract double getWithdrawableAccount();
 	
 	abstract void passTime(int hours);
+	
+	
 	
 }
