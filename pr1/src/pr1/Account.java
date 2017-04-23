@@ -1,6 +1,6 @@
 package pr1;
 
-public class Account {
+public abstract class Account {
 	private double balance;
 	
 	public Account(double balance){
@@ -22,6 +22,9 @@ public class Account {
 	public void debit(double with){
 		setBalance(balance-with);
 	}
-
+	
+	public abstract double getWithdrawableAccount();
+	
+	public abstract void passTime(int month);
 }
  

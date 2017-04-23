@@ -8,63 +8,45 @@ public class AccountTest {
 		
 		Scanner input=new Scanner(System.in);
 		
-		/*ex 1
-		Account account1=new Account(50.0);
-		Account account2=new Account(0.0);
-		System.out.print("account1 balance: "+account1.getBalance()+"\n");
-		System.out.print("account2 balance: "+account2.getBalance()+"\n");
+		Account account1 = new CheckingAccount(100,50,0.01,0.07);
+		Account account2 = new SavingsAccount(100,0.05);
 		
-		System.out.print("Enter withdrawal amount for account1: " );
-		double with=input.nextDouble();
-		account1.debit(with);
-		if(account1.getBalance()<0){
-			account1.setBalance(account1.getBalance()+with);
+		double amount;
+		System.out.printf("Account1 balance: %.2f \t 현재 출금가능액: %.2f\n", account1.getBalance(),account1.getWithdrawableAccount());
+		System.out.println("Enter Withdrawal amount for Account1: ");
+		amount=input.nextDouble();
+		account1.debit(amount);
+		
+		System.out.printf("Account1 balance: %.2f \t 현재 출금가능액: %.2f\n", account1.getBalance(),account1.getWithdrawableAccount());
+		if(((CheckingAccount)account1).isBankrupted()==true){
+			System.out.print("account1 went Bankrupt!\n");
+		}
+		account1.passTime(1);
+		System.out.printf("Account1 balance: %.2f \t 현재 출금가능액: %.2f\n", account1.getBalance(),account1.getWithdrawableAccount());
+		if(((CheckingAccount)account1).isBankrupted()==true){
+			System.out.print("account1 went Bankrupt!\n");
+		}
+		account1.passTime(5);
+		System.out.printf("Account1 balance: %.2f \t 현재 출금가능액: %.2f\n", account1.getBalance(),account1.getWithdrawableAccount());
+		if(((CheckingAccount)account1).isBankrupted()==true){
+			System.out.print("account1 went Bankrupt!\n");
 		}
 		
-		System.out.print("Subtracting "+with+"from account1 balance\n");
-		System.out.print("account1 balance: $"+account1.getBalance()+"\n");
-		System.out.print("account2 balance: $"+account2.getBalance()+"\n");
+		System.out.println();
+		System.out.printf("Account2 balance: %.2f \t 현재 출금가능액: %.2f\n", account2.getBalance(),account2.getWithdrawableAccount());
+		System.out.println("6 Month later!\n");
+		account2.passTime(6);
+		System.out.printf("Account2 balance: %.2f \t 현재 출금가능액: %.2f\n", account2.getBalance(),account2.getWithdrawableAccount());
+		account2.debit(50);	
+		System.out.println("next 6 Month later!\n");
+		account2.passTime(6);
+		System.out.printf("Account2 balance: %.2f \t 현재 출금가능액: %.2f\n", account2.getBalance(),account2.getWithdrawableAccount());	
+		System.out.println("next 1 Month later!\n");
+		account2.passTime(1);
+		System.out.printf("Account2 balance: %.2f \t 현재 출금가능액: %.2f\n", account2.getBalance(),account2.getWithdrawableAccount());
+		account2.debit(50);
+		System.out.printf("Account2 balance: %.2f \t 현재 출금가능액: %.2f\n", account2.getBalance(),account2.getWithdrawableAccount());
 		
-		System.out.print("Enter withdrawal amount for account2: " );
-		with=input.nextDouble();
-		System.out.print("Subtracting "+with+"from account2 balance\n");
-		account2.debit(with);
-		if(account2.getBalance()<0){
-			account2.setBalance(account2.getBalance()+with);
-			System.out.print("Debit amount exceeded amount balance\n");
-		}
-		
-		System.out.print("account1 balance: $"+account1.getBalance()+"\n");
-		System.out.print("account2 balance: $"+account2.getBalance()+"\n");*/
-		
-		Account account1 = new CheckingAccount(100,200,0.01,0.07);
-		Account account2 = new CheckingAccount(100,200,0.01,0.07);
-		
-		System.out.print("Account1 balance: $"+account1.getBalance() +"\n");
-		System.out.print("Account2 balance: $"+account2.getBalance() +"\n");
-		System.out.print("Enter deposit amount for Account1: ");
-		double add=input.nextDouble();
-		account1.credit(add);
-		
-		System.out.print("Account1 balance: $"+account1.getBalance() +"\n");
-		System.out.print("Account2 balance: $"+account2.getBalance() +"\n");
-		System.out.print("Enter withdrawal amount for Account2: ");
-		double with=input.nextDouble();
-		account2.debit(with);
-		
-		System.out.print("Account1 balance: $"+account1.getBalance() +"\n");
-		System.out.print("Account2 balance: $"+account2.getBalance() +"\n");
-		((CheckingAccount)account1).nextMonth();
-		((CheckingAccount)account2).nextMonth();
-		
-		System.out.print("next month!\n");
-		System.out.print("Account1 balance: $"+account1.getBalance() +"\n");
-		System.out.print("Account2 balance: $"+account2.getBalance() +"\n");
-		
-		
-		
-		
-		
-		
+	//	System.out.printf("Account2 balance: %.2f \t 현재 출금가능액: %.2f\n", account2.getBalance(),account2.getWithdrawableAccount());
 	}
 }
